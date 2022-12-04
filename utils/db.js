@@ -12,12 +12,16 @@ class Db {
         this._data = JSON.parse(await readFile(this.dbFileName, 'utf8'))
     }
 
+    async _saveData() {
+        await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
+    }
+
     async create(obj){
         this._data.push({
             ...obj,
             id: v4()
         })
-        await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
+        this._saveData()
     }
 
     getAll(){
@@ -26,12 +30,12 @@ class Db {
 
     async update(id, newObject){
         this._data = this._data.map(item => item.id === id ? { ...item, ...newObject } : item)
-        await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
+        this._saveData()
     }
 
     async delete(id){
         this._data = this._data.filter(item => item.id!== id)
-        await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
+        this._saveData()
     }
 }
 
