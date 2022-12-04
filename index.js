@@ -18,11 +18,10 @@ app.use('/', homeRouter)
 app.use('/client', clientRouter)
 
 app.use('/test', (req, res) => {
-    db.create({
-        name: 'Mati',
-        email: 'matiklekner@gmail.com',
+    db.update('d3666d28-4551-403f-82b0-19caaf7d5050',{
+        name: 'Mateusz',
     })
-    res.send('Ok')
+    res.send(JSON.stringify(db.getAll()))
 })
 
 app.listen('3000', 'localhost')

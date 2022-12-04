@@ -1,5 +1,6 @@
 const { readFile, writeFile } = require('fs').promises
 const { join } = require('path')
+const { v4 } = require('uuid')
 
 class Db {
     constructor(dbFileName){
@@ -12,7 +13,19 @@ class Db {
     }
 
     async create(obj){
-        this._data.push(obj)
+        this._data.push({
+            ...obj,
+            id: v4()
+        })
+        await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
+    }
+
+    getAll(){
+        return this._data
+    }
+
+    async update(id, newObject){
+        this._data = this._data.map(item => item.id === id ? { ...item, ...newObject } : item)
         await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
     }
 }
