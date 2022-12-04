@@ -17,4 +17,12 @@ app.set('view engine', '.hbs')
 app.use('/', homeRouter)
 app.use('/client', clientRouter)
 
+app.use('/test', (req, res) => {
+    db.create({
+        name: 'Mati',
+        email: 'matiklekner@gmail.com',
+    })
+    res.send('Ok')
+})
+
 app.listen('3000', 'localhost')

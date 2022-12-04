@@ -10,6 +10,11 @@ class Db {
     async _loadData() {
         this._data = JSON.parse(await readFile(this.dbFileName, 'utf8'))
     }
+
+    async create(obj){
+        this._data.push(obj)
+        await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
+    }
 }
 
 const db = new Db('client.json')
