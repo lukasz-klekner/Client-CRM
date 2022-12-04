@@ -13,7 +13,7 @@ tr:nth-child(even) {
     background-color: #d5d5d5;
 }
 
-thead tr {
+thead tr, .one-client-table th {
     background-color: #969494;
 }
 

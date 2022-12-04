@@ -10,7 +10,9 @@ clientRouter
         })
     })
     .get('/:id', (req, res) => {
-        res.send('Hello World 2!')
+        res.render('client/one-client', {
+            client: db.getOne(req.params.id)
+        })
     })
     .post('/', (req, res) => {
         res.send('Hello World POST!')

@@ -28,6 +28,10 @@ class Db {
         return this._data
     }
 
+    getOne(id){
+        return this._data.find(item => item.id === id)
+    }
+
     async update(id, newObject){
         this._data = this._data.map(item => item.id === id ? { ...item, ...newObject } : item)
         this._saveData()
