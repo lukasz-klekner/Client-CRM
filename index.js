@@ -3,6 +3,7 @@ const { engine } = require('express-handlebars');
 
 const { clientRouter } = require('./routes/client');
 const { homeRouter } = require('./routes/home');
+const { db } = require('./utils/db')
 
 const app = express();
 
