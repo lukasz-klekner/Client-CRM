@@ -1,10 +1,13 @@
 const express = require('express')
+const { db } = require('../utils/db')
 
 const clientRouter = express.Router()
 
 clientRouter
     .get('/', (req, res) => {
-        res.send('Hello World!')
+        res.render('client/all-clients', {
+            clients: db.getAll()
+        })
     })
     .get('/:id', (req, res) => {
         res.send('Hello World 2!')
