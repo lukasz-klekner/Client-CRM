@@ -18,9 +18,7 @@ app.use('/', homeRouter)
 app.use('/client', clientRouter)
 
 app.use('/test', (req, res) => {
-    db.update('d3666d28-4551-403f-82b0-19caaf7d5050',{
-        name: 'Mateusz',
-    })
+    db.delete('d3666d28-4551-403f-82b0-19caaf7d5050')
     res.send(JSON.stringify(db.getAll()))
 })
 

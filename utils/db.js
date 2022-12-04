@@ -28,6 +28,11 @@ class Db {
         this._data = this._data.map(item => item.id === id ? { ...item, ...newObject } : item)
         await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
     }
+
+    async delete(id){
+        this._data = this._data.filter(item => item.id!== id)
+        await writeFile(this.dbFileName, JSON.stringify(this._data), 'utf8')
+    }
 }
 
 const db = new Db('client.json')
