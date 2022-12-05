@@ -17,11 +17,14 @@ class Db {
     }
 
     async create(obj){
+        const id = v4()
         this._data.push({
             ...obj,
-            id: v4()
+            id
         })
         this._saveData()
+
+        return id
     }
 
     getAll(){
