@@ -1,0 +1,20 @@
+{{#with client}}
+    <h2>Editing {{name}}</h2>
+    <form method="POST" action="/client/{{id}}?_method=PUT">
+        <p>
+            <label>Email: <input type="email" name="email" value="{{email}}" /></label>
+        </p>
+        <p>
+            <label>Name: <input name="name" value="{{name}}" /></label>
+        </p>
+        <p>
+            <label>Contact at: <input type="date" name="nextContactAt" value={{nextContactAt}}/></label>
+        </p>
+        <p>
+            <div>Notes:</div>
+            <textarea name="notes">{{notes}}</textarea>
+        </p>
+
+        <button>Save changes</button>
+    </form>
+{{/with}}

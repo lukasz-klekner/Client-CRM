@@ -12,6 +12,11 @@ clientRouter
     .get('/add', (req, res) => {
         res.render('client/add-client')
     })
+    .get('/edit/:id', (req, res) => {
+        res.render('client/edit-client', {
+            client: db.getOne(req.params.id)
+        })
+    })
     .get('/:id', (req, res) => {
         res.render('client/one-client', {
             client: db.getOne(req.params.id)
@@ -24,7 +29,10 @@ clientRouter
         })
     })
     .put('/:id', (req, res) => {
-        res.send('Hello World PUT!')
+        db.update(req.params.id, req.body)
+        res.render('client/updated', {
+            id: req.params.id
+        })
     })
     .delete('/:id', (req, res) => {
         db.delete(req.params.id)
