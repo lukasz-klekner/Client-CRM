@@ -14,7 +14,12 @@
                 <th><a href="mailto:{{this.email}}">{{this.email}}</a></th>
                 <td><a href="/client/{{this.id}}">{{this.name}}</a></td>
                 <td>{{this.nextContactAt}}</td>
-                <td><a href="/client/{{this.id}}">Details</a></td>
+                <td>
+                    <a href="/client/{{this.id}}">Details</a>
+                    <form method="POST" action="/client/{{this.id}}?_method=DELETE">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         {{/each}}
     </tbody>

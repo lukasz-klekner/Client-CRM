@@ -21,7 +21,8 @@ clientRouter
         res.send('Hello World PUT!')
     })
     .delete('/:id', (req, res) => {
-        res.send('Hello World DELETE!')
+        db.delete(req.params.id)
+        res.render('client/deleted')
     })
 
 module.exports = {
