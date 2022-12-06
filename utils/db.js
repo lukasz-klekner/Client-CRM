@@ -1,6 +1,7 @@
 const { readFile, writeFile } = require('fs').promises
 const { join } = require('path')
 const { v4 } = require('uuid')
+const { ClientRecord } = require('../model/clientRecord')
 
 class Db {
     constructor(dbFileName){
@@ -9,7 +10,7 @@ class Db {
     }
 
     async _loadData() {
-        this._data = JSON.parse(await readFile(this.dbFileName, 'utf8'))
+        this._data = JSON.parse(await readFile(this.dbFileName, 'utf8')).map(item => new ClientRecord(item))
     }
 
     async _saveData() {
@@ -18,10 +19,10 @@ class Db {
 
     async create(obj){
         const id = v4()
-        this._data.push({
+        this._data.push(new ClientRecord({
             ...obj,
             id
-        })
+        }))
         this._saveData()
 
         return id

@@ -22,11 +22,16 @@ clientRouter
             client: db.getOne(req.params.id)
         })
     })
-    .post('/', async (req, res) => {
-        const id = await db.create(req.body)
-        res.render('client/added',{
-            id
-        })
+    .post('/', async (req, res, next) => {
+        try {
+           const id = await db.create(req.body)
+
+            res.render('client/added',{
+                id
+            })
+        } catch(error){
+            next(error)
+        }
     })
     .put('/:id', (req, res) => {
         db.update(req.params.id, req.body)

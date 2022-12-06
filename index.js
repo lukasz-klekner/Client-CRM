@@ -4,7 +4,8 @@ const methodOverride = require('method-override')
 
 const { clientRouter } = require('./routes/client');
 const { homeRouter } = require('./routes/home');
-const { db } = require('./utils/db')
+const { db } = require('./utils/db');
+const { handleError } = require('./utils/errors');
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.set('view engine', '.hbs')
 
 app.use('/', homeRouter)
 app.use('/client', clientRouter)
+
+app.use(handleError)
 
 app.use('/test', (req, res) => {
     db.delete('d3666d28-4551-403f-82b0-19caaf7d5050')

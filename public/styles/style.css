@@ -24,3 +24,11 @@ thead tr:nth-child(even) {
 td, th {
     padding: 6px;
 }
+
+.error {
+    background-color: rgb(236, 192, 192);
+    border: 2px solid red;
+    padding: 20px;
+    margin: 10px auto;
+    width: 80%;
+}
